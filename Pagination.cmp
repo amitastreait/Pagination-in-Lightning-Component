@@ -1,0 +1,67 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                controller='PaginationController'
+                access="global" >
+    
+    <!-- Attribute Declration For Pagination -->
+    <aura:attribute name="ContactData" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    
+     <aura:attribute name="isSending" type="boolean" />
+    
+    <!-- Attribute Declration For Pagination -->
+    <aura:attribute name="PaginationList" type="Contact"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <!-- Attribute Declration For Pagination End-->
+    
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
+    
+    <!-- Spinner Start, show the loading screen while 
+		 Client side controller(JS) is communicating with Server Side(APEX) controller -->
+    <aura:if isTrue="{!v.isSending}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!-- Spinner End -->
+    
+    <div class="slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-opportunity" 
+                      title="Description of icon when needed">
+                    
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" 
+                    title="Pagination Demo">Pagination Demo</h1>
+                <p class="slds-text-body_small slds-line-height_reset">
+                   By - SFDC PANTHER • 26/11/17</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slds-m-top_medium" >
+        <lightning:datatable data="{! v.PaginationList }" class="slds-m-top_medium"
+                             columns="{! v.columns }" 
+                             keyField="id"
+                             onrowselection="{! c.getSelectedName }"/>	
+        <br/>
+        <lightning:buttonGroup >
+            <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
+                              onclick="{!c.previous}" variant="brand"
+                              iconName='utility:back'/>
+            &nbsp; &nbsp; &nbsp;
+            <lightning:button label="Next" disabled="{!v.endPage >= v.totalRecords}" 
+                              onclick="{!c.next}" variant="brand"
+                              iconName='utility:forward' iconPosition='right'/>
+        </lightning:buttonGroup>
+    </div>
+</aura:component>
