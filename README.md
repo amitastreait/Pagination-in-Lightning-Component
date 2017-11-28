@@ -16,11 +16,11 @@ Mr. Y, who is working as a developer suggessted to use the concept of Pagination
 
 List of components used in this implementation
 
-# Pagination.cmp - Lightning Component to display the records.
-# PaginationController.js - Client Side Controller for above component and responsible for calling the helper(JS) method.
-# PaginationHelper.js - Client Side helper javascript file which is responsible for calling the Server side(Apex) methods and do all the stuffs related to pagination.
-# PaginationController.apex - Server Side controller to fetch the records.
-# PaginationApp.app - Lightning App which includes Pagination.cmp lightning component and display the result.
+1 - Pagination.cmp - Lightning Component to display the records.
+2 - PaginationController.js - Client Side Controller for above component and responsible for calling the helper(JS) method.
+3 - PaginationHelper.js - Client Side helper javascript file which is responsible for calling the Server side(Apex) methods and do all the stuffs related to pagination.
+4 - PaginationController.apex - Server Side controller to fetch the records.
+5 - PaginationApp.app - Lightning App which includes Pagination.cmp lightning component and display the result.
 
 Below is the code snipet of the Lightning App 
 
